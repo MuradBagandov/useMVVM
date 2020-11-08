@@ -11,7 +11,31 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Create"/>
+                <MenuItem Header="Open"/>
+            </MenuItem>
+            <MenuItem Header="Help"/>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom"></StatusBar>
+        <TabControl>
+            <TabItem Header="Item1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
 
-    </Grid>
+                    <Button Content="btn1" Margin="10"/>
+                    <TextBox Grid.Column="1" Margin="10"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Item2"/>
+        </TabControl>
+    </DockPanel>
 </Window>
