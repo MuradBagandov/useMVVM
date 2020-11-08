@@ -31,7 +31,7 @@
                         <ColumnDefinition Width="100"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Content="btn1" Margin="10"/>
+                    <Button Content="btn1" Margin="10" />
                     <TextBox Grid.Column="1" Margin="10"/>
                 </Grid>
             </TabItem>
