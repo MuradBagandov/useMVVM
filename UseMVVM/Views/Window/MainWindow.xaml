@@ -16,6 +16,8 @@
             <MenuItem Header="File">
                 <MenuItem Header="Create"/>
                 <MenuItem Header="Open"/>
+                <Separator/>
+                <MenuItem Header="Close" Command="{Binding CloseApplicationCommand}"/>
             </MenuItem>
             <MenuItem Header="Help"/>
         </Menu>
