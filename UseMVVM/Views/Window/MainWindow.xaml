@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UseMVVM"
         xmlns:vm="clr-namespace:UseMVVM.ViewModels"
+        xmlns:cmd="clr-namespace:UseMVVM.Infrastuctures.Commands"
         mc:Ignorable="d"
         Title="{Binding Title}" 
         Height="450" Width="800">
@@ -17,7 +18,12 @@
                 <MenuItem Header="Create"/>
                 <MenuItem Header="Open"/>
                 <Separator/>
-                <MenuItem Header="Close" Command="{Binding CloseApplicationCommand}"/>
+                <MenuItem Header="Close">
+                    <MenuItem.Command>
+                        <cmd:CloseApplicationCommand/>
+                    </MenuItem.Command>
+                </MenuItem>
+                
             </MenuItem>
             <MenuItem Header="Help"/>
         </Menu>
@@ -30,7 +36,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="300"/>
                     </Grid.ColumnDefinitions>
 
                     <Button Content="btn1" Margin="10" />

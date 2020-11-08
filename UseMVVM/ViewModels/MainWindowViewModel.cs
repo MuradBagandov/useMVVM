@@ -25,20 +25,13 @@ namespace UseMVVM.ViewModels
 
         #region Commands
 
-        public ICommand CloseApplicationCommand { get;  }
-
-        public bool CanCloseApplicationCommandExecute(object p) => true;
-
-        public void OnCloseApplicationCommandExecute(object p)
-        {
-            Application.Current.Shutdown();
-        }
+        
 
         #endregion
 
         public MainWindowViewModel()
         {
-            CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecute, CanCloseApplicationCommandExecute);
+            
         }
 
     }
