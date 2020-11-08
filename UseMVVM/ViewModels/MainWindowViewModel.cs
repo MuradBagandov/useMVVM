@@ -7,8 +7,15 @@ using UseMVVM.ViewModels.Base;
 
 namespace UseMVVM.ViewModels
 {
-    class MainWindowViewModel:ViewModel
+    internal class MainWindowViewModel:ViewModel
     {
+        private string _title = "MainTitle";
+
+        public string Title
+        {
+            get => _title;
+            set => Set(ref _title, value);
+        }
 
     }
 }
