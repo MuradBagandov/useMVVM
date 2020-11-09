@@ -1,0 +1,24 @@
+﻿<Window x:Class="UseMVVM.Views.Window.Calculate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UseMVVM.Views.Window"
+        xmlns:vm="clr-namespace:UseMVVM.ViewModels"
+        mc:Ignorable="d"
+        Title="Calculate" Height="450" Width="300" Background="#FF2E2E2E">
+    <Window.DataContext>
+        <vm:CalculateViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" FontSize="24" TextAlignment="Right" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
+                 Background="#FF3C3C3C" BorderBrush="{x:Null}" Foreground="#FF41AAF3"/>
+        <TextBox Grid.Row="1" FontSize="20" TextAlignment="Right" Text="{Binding Result}"
+                 Background="#FF3C3C3C" BorderBrush="{x:Null}" Foreground="#FF41AAF3"/>
+    </Grid>
+</Window>
