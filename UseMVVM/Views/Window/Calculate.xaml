@@ -14,9 +14,28 @@
         <Style TargetType="Button">
             <Setter Property="Margin" Value="1"/>
             <Setter Property="Background" Value="#FF363636"/>
-            <Setter Property="Foreground" Value="#FF00E8FF"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderBrush" Value="#FF363636"/>
             <Setter Property="FontSize" Value="16"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF494949"/>
+                    <Setter Property="BorderBrush" Value="#FF494949"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" Value="#FF6A6A6A"/>
+                    <Setter Property="BorderBrush" Value="#FF6A6A6A"/>
+                </Trigger>
+                
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBox">
+            <Style.Setters>
+                <Setter Property="Foreground" Value="#FF41AAF3"/>
+                <Setter Property="Background" Value="{x:Null}"/>
+                <Setter Property="BorderBrush" Value="{x:Null}"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Style.Setters>
         </Style>
     </Window.Resources>
     
@@ -28,12 +47,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBox Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" 
-                 FontSize="24" TextAlignment="Right"  VerticalContentAlignment="Center"
-                 Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF41AAF3"/>
+                 FontSize="24" TextAlignment="Right"/>
         <Rectangle Grid.Row="1" Margin="5,0,5,0" Height="1" Fill="#6D2BC5FF"/>
         <TextBox Text="{Binding Result}" IsReadOnly="true" Grid.Row="2" 
-                 FontSize="20" TextAlignment="Right"  VerticalContentAlignment="Center"
-                 Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF41AAF3"/>
+                 FontSize="20" TextAlignment="Right"/>
         <UniformGrid Grid.Row="3" Background="#FF464747" Rows="7" Columns="4">
             <Button Content="1"/>
             <Button Content="2"/>
@@ -55,6 +72,8 @@
             <Button Content="("/>
             <Button Content=")"/>
             <Button Content="="/>
+
+
         </UniformGrid>
     </Grid>
 </Window>

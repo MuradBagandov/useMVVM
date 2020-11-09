@@ -40,7 +40,6 @@
 
                     <Button Content="btn1" Margin="10" />
                     <TextBox Grid.Column="1" Margin="10"/>
-                    
                 </Grid>
             </TabItem>
             <TabItem Header="Item2"/>
