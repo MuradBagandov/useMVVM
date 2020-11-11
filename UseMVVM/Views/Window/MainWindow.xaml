@@ -3,8 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:UseMVVM"
         xmlns:vm="clr-namespace:UseMVVM.ViewModels"
+        xmlns:m="clr-namespace:UseMVVM.Models.HighShool"
         xmlns:cmd="clr-namespace:UseMVVM.Infrastuctures.Commands"
         mc:Ignorable="d"
         Title="{Binding Title}" 
@@ -27,7 +29,7 @@
         </Menu>
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
         <TabControl Background="White">
-            <TabItem Header="Item1" Background="White">
+            <TabItem Header="Item1">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
@@ -40,36 +42,63 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Content="btn1" Margin="10" />
-                    <TextBox Grid.Column="1" Margin="10"/>
+                    <TextBox Grid.Column="1" Margin="10" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
                     <ComboBox Grid.Row="1" ItemsSource="{Binding TestList}" SelectedIndex="0"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Студенты" Background="White">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Male" Foreground="#FF747474" Height="10" Margin="0,0,7,0"/>
+                        <TextBlock Text="Students"/>
+                    </StackPanel>
+                </TabItem.Header>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Groups">
-                        <ListBox ItemsSource="{Binding Groups}" SelectedIndex="0" DisplayMemberPath="Name" 
-                                 SelectedItem="{Binding SelectedGroup}"/>
+                        <ListBox ItemsSource="{Binding Groups}" 
+                                 SelectedIndex="0" 
+                                 SelectedItem="{Binding SelectedGroup}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type m:Group}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}" Foreground="Red" FontWeight="Bold" />
+                                        <TextBlock Text="{Binding Students.Count, StringFormat=Студентов: {0}}" Margin="5,0,0,0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Header="Students">
                         <DataGrid ItemsSource ="{Binding SelectedGroup.Students}" 
                                   AutoGenerateColumns="False" 
-                                  IsReadOnly="true"
+                                  CanUserAddRows="False"
                                   GridLinesVisibility="Vertical"
                                   VerticalGridLinesBrush="DarkGray"
                                   AlternatingRowBackground="#ffe3bf">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"/>
-                                <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}"/>
-                                <DataGridTextColumn Header="Birthday" Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"/>
-                                <DataGridTextColumn Header="Age" Binding="{Binding Age}"/>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="true"/>
+                                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" IsReadOnly="true"/>
+                                <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}" IsReadOnly="true"/>
+                                <DataGridTemplateColumn Header="Birthday">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text ="{Binding Birthday, StringFormat=dd.MM.yyyy}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <DatePicker SelectedDate="{Binding Birthday}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Age" Binding="{Binding Age}" IsReadOnly="true"/>
                                 <DataGridTextColumn Header="Group" Binding="{Binding 
                                     DataContext.SelectedGroup.Name, 
-                                    RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                                    RelativeSource={RelativeSource AncestorType=DataGrid}}" IsReadOnly="true" Width="Auto"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>

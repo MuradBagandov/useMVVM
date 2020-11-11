@@ -16,6 +16,7 @@ namespace UseMVVM.ViewModels
     {
         public ObservableCollection<Group> Groups { get; set; }
 
+        #region Property
 
         #region TestList
         private List<string> _testList = new List<string> { "txt112", "txt12214" };
@@ -24,7 +25,7 @@ namespace UseMVVM.ViewModels
         {
             get => _testList;
             set => Set(ref _testList, value);
-        } 
+        }
         #endregion
 
         #region Title
@@ -37,6 +38,7 @@ namespace UseMVVM.ViewModels
         }
         #endregion
 
+        #region SelectedGroup
         private Group _selectedGroup;
 
         public Group SelectedGroup
@@ -44,13 +46,16 @@ namespace UseMVVM.ViewModels
             get => _selectedGroup;
             set => Set(ref _selectedGroup, value);
         }
-       
+        #endregion 
+
+        #endregion
 
         #region Commands
 
-        
+
 
         #endregion
+
 
         public MainWindowViewModel()
         {
@@ -59,8 +64,8 @@ namespace UseMVVM.ViewModels
             {
                 Name = $"Name {indexStudent}",
                 Surname = $"Surname {indexStudent}",
-                Patronymic = $"Patronymic {++indexStudent}",
-                Age = new Random(indexStudent).Next(10, 20),
+                Patronymic = $"Patronymic {indexStudent}",
+                Age = new Random(++indexStudent).Next(10, 20),
                 Birthday = DateTime.Today,
                 LastRating = new ObservableCollection<int>(Enumerable.Range(1, 5).Select(x => new Random(x).Next(2, 5)))
             });

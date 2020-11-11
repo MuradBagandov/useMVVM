@@ -56,7 +56,7 @@
                  FontSize="20" TextAlignment="Right"/>
 
         <UniformGrid Grid.Row="3" Background="#FF464747" Rows="7" Columns="4">
-            <Button Content="1" />
+            <Button Content="1"/>
             <Button Content="2"/>
             <Button Content="3"/>
             <Button Content="+"/>
