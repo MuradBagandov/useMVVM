@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:UseMVVM.Views.Window"
         xmlns:vm="clr-namespace:UseMVVM.ViewModels"
         mc:Ignorable="d"
         Title="Calculate" Height="450" Width="300" Background="#FF2E2E2E"  ResizeMode="CanMinimize">
+
     <Window.DataContext>
         <vm:CalculateViewModel/>
     </Window.DataContext>
@@ -21,6 +23,7 @@
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#FF494949"/>
                     <Setter Property="BorderBrush" Value="#FF494949"/>
+                    <Setter Property="FontSize" Value="20"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="true">
                     <Setter Property="Background" Value="#FF6A6A6A"/>
@@ -49,10 +52,11 @@
         <TextBox Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" 
                  FontSize="24" TextAlignment="Right"/>
         <Rectangle Grid.Row="1" Margin="5,0,5,0" Height="1" Fill="#6D2BC5FF"/>
-        <TextBox Text="{Binding Result}" IsReadOnly="true" Grid.Row="2" 
+        <TextBox x:Name="txt1" Text="{Binding Result, TargetNullValue=0}" IsReadOnly="true" Grid.Row="2" 
                  FontSize="20" TextAlignment="Right"/>
+
         <UniformGrid Grid.Row="3" Background="#FF464747" Rows="7" Columns="4">
-            <Button Content="1"/>
+            <Button Content="1" />
             <Button Content="2"/>
             <Button Content="3"/>
             <Button Content="+"/>

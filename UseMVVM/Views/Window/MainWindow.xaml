@@ -26,8 +26,8 @@
             <MenuItem Header="Help"/>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
-        <TabControl>
-            <TabItem Header="Item1">
+        <TabControl Background="White">
+            <TabItem Header="Item1" Background="White">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
@@ -42,7 +42,7 @@
                     <TextBox Grid.Column="1" Margin="10"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Item2"/>
+            <TabItem Header="Студенты" Background="White"/>
         </TabControl>
     </DockPanel>
 </Window>
