@@ -72,6 +72,7 @@
     <Compile Include="Infrastuctures\Commands\Base\Command.cs" />
     <Compile Include="Infrastuctures\Commands\CloseApplicationCommand.cs" />
     <Compile Include="Infrastuctures\Commands\LambdaCommand.cs" />
+    <Compile Include="Models\HighShool\Student.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\CalculateViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -112,7 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
