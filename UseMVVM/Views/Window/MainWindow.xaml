@@ -11,12 +11,15 @@
         mc:Ignorable="d"
         Title="{Binding Title}" 
         Height="450" Width="800">
+    
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+    
     <Window.InputBindings>
         <KeyBinding Key="F5" Modifiers="Alt" Command="{StaticResource CloseApplicationCommand}"/>
     </Window.InputBindings>
+
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
@@ -42,7 +45,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Content="btn1" Margin="10" />
-                    <TextBox Grid.Column="1" Margin="10" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Style="{StaticResource TextBoxWithValidation}" Grid.Column="1" Margin="10" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
                     <ComboBox Grid.Row="1" ItemsSource="{Binding TestList}" SelectedIndex="0"/>
                 </Grid>
             </TabItem>
@@ -63,7 +66,8 @@
                             <UniformGrid DockPanel.Dock="Bottom" Columns="2" Height="25" Margin="0,4">
                                 <Button Content="Add" Margin="0,0,2,0" Command="{Binding AddGroupCommand}"/>
                                 <Button Content="Remove" Margin="2,0,0,0" 
-                                        Command="{Binding RemoveGroupCommand}" CommandParameter="{Binding SelectedGroup}"/>
+                                        Command="{Binding RemoveGroupCommand}" 
+                                        CommandParameter="{Binding SelectedGroup}"/>
                             </UniformGrid>
 
                             <ListBox ItemsSource="{Binding Groups}"
@@ -82,7 +86,7 @@
                         </DockPanel>
                         
                     </GroupBox>
-                    <GroupBox Grid.Column="1" Header="Students">
+                    <GroupBox Grid.Column="1" Header="{Binding StringFormat=Студенты:{0}, Path=SelectedGroup.Name, FallbackValue=Студенты}">
                         <DataGrid ItemsSource ="{Binding SelectedGroup.Students}" 
                                   AutoGenerateColumns="False" 
                                   CanUserAddRows="False"

@@ -5,6 +5,12 @@
              xmlns:cmd="clr-namespace:UseMVVM.Infrastuctures.Commands"
              StartupUri="Views/Window/MainWindow.xaml">
     <Application.Resources>
-        <cmd:CloseApplicationCommand x:Key="CloseApplicationCommand"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Commands.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/Buttons.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/TextBoxs.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

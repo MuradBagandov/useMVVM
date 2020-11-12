@@ -61,7 +61,7 @@ namespace UseMVVM.ViewModels
         {
             Groups.Add(new Group
             {
-                Name = $"Name {Groups.Count + 1}",
+                Name = $"Group {Groups.Count + 1}",
                 Students = new ObservableCollection<Student>()
             });
         } 
