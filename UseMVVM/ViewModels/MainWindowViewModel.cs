@@ -46,19 +46,54 @@ namespace UseMVVM.ViewModels
             get => _selectedGroup;
             set => Set(ref _selectedGroup, value);
         }
-        #endregion 
+        #endregion
 
         #endregion
 
         #region Commands
 
+        #region AddGroupCommand
+        public ICommand AddGroupCommand { get; set; }
 
+        private bool CanAddGroupCommandExecute(object p) => true;
+
+        private void OnAddGroupCommandExecuted(object p)
+        {
+            Groups.Add(new Group
+            {
+                Name = $"Name {Groups.Count + 1}",
+                Students = new ObservableCollection<Student>()
+            });
+        } 
+        #endregion
+
+        #region RemoveGroupCommand
+        public ICommand RemoveGroupCommand { get; set; }
+
+        private bool CanRemoveGroupCommandExecute(object p) => p is Group group && Groups.Contains(group);
+
+        private void OnRemoveGroupCommandExecuted(object p)
+        {
+            if (p is Group group)
+            {
+                var index = Groups.IndexOf(group);
+                Groups.Remove(group);
+                if (Groups.Count > 0)
+                    SelectedGroup = index < Groups.Count ? Groups[index] : Groups[index - 1];
+            }
+                
+        } 
+        #endregion
 
         #endregion
 
-
         public MainWindowViewModel()
         {
+            #region Commands
+            RemoveGroupCommand = new LambdaCommand(OnRemoveGroupCommandExecuted, CanRemoveGroupCommandExecute);
+            AddGroupCommand = new LambdaCommand(OnAddGroupCommandExecuted, CanAddGroupCommandExecute); 
+            #endregion
+
             int indexStudent = 1;
             var students = Enumerable.Range(1, 15).Select(s => new Student
             {
