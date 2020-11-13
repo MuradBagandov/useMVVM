@@ -1,5 +1,4 @@
-﻿
-using System.Windows;
+﻿using System.Windows;
 
 namespace UseMVVM.Views.Window
 {
@@ -11,6 +10,12 @@ namespace UseMVVM.Views.Window
         public Calculate()
         {
             InitializeComponent();
+            
+        }
+
+        private void WindowHead_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

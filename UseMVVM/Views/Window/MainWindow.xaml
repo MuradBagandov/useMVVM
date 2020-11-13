@@ -44,7 +44,7 @@
                         <ColumnDefinition Width="300"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Content="btn1" Margin="10" />
+                    <Button Content="btn1" Margin="2" FontSize ="12"/>
                     <TextBox Style="{StaticResource TextBoxWithValidation}" Grid.Column="1" Margin="10" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
                     <ComboBox Grid.Row="1" ItemsSource="{Binding TestList}" SelectedIndex="0"/>
                 </Grid>
@@ -64,8 +64,9 @@
                     <GroupBox Grid.Column="0" Header="Groups">
                         <DockPanel>
                             <UniformGrid DockPanel.Dock="Bottom" Columns="2" Height="25" Margin="0,4">
-                                <Button Content="Add" Margin="0,0,2,0" Command="{Binding AddGroupCommand}"/>
-                                <Button Content="Remove" Margin="2,0,0,0" 
+                                <Button Content="Add" Margin="0,0,2,0" FontSize="12"
+                                        Command="{Binding AddGroupCommand}"/>
+                                <Button Content="Remove" Margin="2,0,0,0" FontSize="12"
                                         Command="{Binding RemoveGroupCommand}" 
                                         CommandParameter="{Binding SelectedGroup}"/>
                             </UniformGrid>
