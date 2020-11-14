@@ -14,7 +14,6 @@
         <vm:CalculateViewModel/>
     </Window.DataContext>
 
-
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -22,10 +21,12 @@
                 <ResourceDictionary Source="../../Resources/Styles/ButtonOnWindowsHeader.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="TextBox">
-                <Setter Property="Background" Value="{x:Null}"/>
+                <Setter Property="Background" Value="#202020"/>
                 <Setter Property="BorderBrush" Value="{x:Null}"/>
                 <Setter Property="Foreground" Value="white"/>
                 <Setter Property="FontFamily" Value="Calisto MT"/>
+                <Setter Property="Padding" Value="5,0"/>
+                <Setter Property="Template" Value="{StaticResource TextBoxBaseControlTemplate1}"/>
             </Style>
         </ResourceDictionary>
     </Window.Resources>
@@ -34,16 +35,14 @@
         <ControlTemplate>
             <Border x:Name="WindowHead" CornerRadius="1" BorderThickness="1" 
                     Background="#202020"  
-                    BorderBrush="#3399ff" 
+                    BorderBrush="#404040"
                     MouseLeftButtonDown="WindowHead_MouseLeftButtonDown">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="15"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="1"/>
-                        <RowDefinition Height="30"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
+
                     <Grid Grid.Row="0" Background="#3399ff">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Template="{StaticResource CloseOnWindowHead}" HorizontalAlignment="Right" 
@@ -51,37 +50,50 @@
                         </StackPanel>
                     </Grid>
 
-                    <TextBox Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" 
-                     FontSize="24" TextAlignment="Right" VerticalContentAlignment="Bottom"/>
-                    <Rectangle Grid.Row="2" Margin="5,0,5,0" Height="1" Fill="#555555"/>
-                    <TextBox x:Name="txt1" Text="{Binding Result, TargetNullValue=0}" IsReadOnly="true" Grid.Row="3" 
-                     FontSize="20" TextAlignment="Right"/>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="1"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
-                    <UniformGrid Grid.Row="4" Background="{x:Null}" Rows="5" Columns="4" Margin="2,5">
-                        <Button Content="!"/>
-                        <Button Content="("/>
-                        <Button Content=")"/>
-                        <Button Content="/"/>
-                        <Button Content="1"/>
-                        <Button Content="2"/>
-                        <Button Content="3"/>
-                        <Button Content="*"/>
-                        <Button Content="4"/>
-                        <Button Content="5"/>
-                        <Button Content="6"/>
-                        <Button Content="-"/>
-                        <Button Content="7"/>
-                        <Button Content="8"/>
-                        <Button Content="9"/>
-                        <Button Content="+"/>
-                        <Button Content="%"/>
-                        <Button Content="0"/>
-                        <Button Content="."/>
-                        <Button Content="="/>
-                    </UniformGrid>
+                        <TextBox Grid.Row="0" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="24" 
+                             TextAlignment="Right" 
+                             VerticalContentAlignment="Bottom"/>
+                        <Rectangle Grid.Row="1" Margin="5,0,5,0" Height="1" Fill="#555555"/>
+                        <TextBox Grid.Row="2" Text="{Binding Result, TargetNullValue=0}" 
+                             IsReadOnly="true"
+                             FontSize="20" 
+                             TextAlignment="Right"
+                             VerticalAlignment="Center"/>
+
+                        <UniformGrid Grid.Row="3" Background="{x:Null}" Rows="5" Columns="4" Margin="2,5">
+                            <Button Content="!"/>
+                            <Button Content="("/>
+                            <Button Content=")"/>
+                            <Button Content="/"/>
+                            <Button Content="1"/>
+                            <Button Content="2"/>
+                            <Button Content="3"/>
+                            <Button Content="*"/>
+                            <Button Content="4"/>
+                            <Button Content="5"/>
+                            <Button Content="6"/>
+                            <Button Content="-"/>
+                            <Button Content="7"/>
+                            <Button Content="8"/>
+                            <Button Content="9"/>
+                            <Button Content="+"/>
+                            <Button Content="%"/>
+                            <Button Content="0"/>
+                            <Button Content="."/>
+                            <Button Content="="/>
+                        </UniformGrid>
+                    </Grid>
                 </Grid>
             </Border>
         </ControlTemplate>
     </Window.Template>
-    
 </Window>

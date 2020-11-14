@@ -19,9 +19,9 @@ namespace UseMVVM.ViewModels
         #region Property
 
         #region TestList
-        private List<string> _testList = new List<string> { "txt112", "txt12214" };
+        private List<object> _testList = new List<object> { "txt112", "txt12214" };
 
-        public List<string> TestList
+        public List<object> TestList
         {
             get => _testList;
             set => Set(ref _testList, value);
@@ -95,7 +95,7 @@ namespace UseMVVM.ViewModels
             #endregion
 
             int indexStudent = 1;
-            var students = Enumerable.Range(1, 15).Select(s => new Student
+            var students = Enumerable.Range(1, 10).Select(s => new Student
             {
                 Name = $"Name {indexStudent}",
                 Surname = $"Surname {indexStudent}",
@@ -104,12 +104,14 @@ namespace UseMVVM.ViewModels
                 Birthday = DateTime.Today,
                 LastRating = new ObservableCollection<int>(Enumerable.Range(1, 5).Select(x => new Random(x).Next(2, 5)))
             });
-            var groups = Enumerable.Range(1, 30).Select(x => new Group 
+            var groups = Enumerable.Range(1, 10).Select(x => new Group 
             { 
                 Name = $"Группа {x}", 
                 Students = new ObservableCollection<Student>(students) 
             });
             Groups = new ObservableCollection<Group>(groups);
+            _testList.Add(Groups[0]);
+            _testList.Add(new ObservableCollection<Student>(students)[0]);
         }
 
     }

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:sys="clr-namespace:System;assembly=System"
         xmlns:local="clr-namespace:UseMVVM"
         xmlns:vm="clr-namespace:UseMVVM.ViewModels"
         xmlns:m="clr-namespace:UseMVVM.Models.HighShool"
@@ -33,6 +34,33 @@
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
         <TabControl Background="White">
             <TabItem Header="Item1">
+                <TabItem.Resources>
+                    <DataTemplate DataType="{x:Type m:Group}">
+                        <StackPanel Orientation="Vertical">
+                            <TextBox Name="TextView" 
+                                                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                                                     Foreground="Black" Background="Transparent"
+                                                     BorderThickness="0"
+                                                     FontWeight="Bold"
+                                                     Margin="3,0,0,0"/>
+
+                            <TextBlock Text="{Binding Students.Count, StringFormat=Студентов: {0}}" 
+                                                       HorizontalAlignment="Right" Margin="0,0,3,0"/>
+                            <Separator/>
+                        </StackPanel>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type m:Student}">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Name}" 
+                                       HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="{Binding Surname}" 
+                                       HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                    
+                </TabItem.Resources>
+                
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
@@ -46,7 +74,8 @@
 
                     <Button Content="btn1" Margin="2" FontSize ="12"/>
                     <TextBox Style="{StaticResource TextBoxWithValidation}" Grid.Column="1" Margin="10" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
-                    <ComboBox Grid.Row="1" ItemsSource="{Binding TestList}" SelectedIndex="0"/>
+                    <ComboBox Grid.Row="1" ItemsSource="{Binding TestList}" SelectedIndex="0" 
+                              HorizontalContentAlignment="Stretch"/>
                 </Grid>
             </TabItem>
             <TabItem>
@@ -72,32 +101,55 @@
                             </UniformGrid>
 
                             <ListBox ItemsSource="{Binding Groups}"
-                                 SelectedIndex="0" 
-                                 SelectedItem="{Binding SelectedGroup}">
+                                     SelectedIndex="0" 
+                                     SelectedItem="{Binding SelectedGroup}" 
+                                     HorizontalContentAlignment="Stretch"
+                                     VirtualizingPanel.IsVirtualizing="True"
+                                     VirtualizingPanel.IsContainerVirtualizable="True"
+                                     VirtualizingPanel.VirtualizationMode="Recycling">
+                                
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="{x:Type m:Group}">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Name}" Foreground="Red" FontWeight="Bold" />
-                                            <TextBlock Text="{Binding Students.Count, StringFormat=Студентов: {0}}" Margin="5,0,0,0"/>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBox Name="TextView" 
+                                                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                                                     Foreground="Black" Background="Transparent"
+                                                     BorderThickness="0"
+                                                     FontWeight="Bold"
+                                                     Margin="3,0,0,0"/>
+
+                                            <TextBlock Text="{Binding Students.Count, StringFormat=Студентов: {0}}" 
+                                                       HorizontalAlignment="Right" Margin="0,0,3,0"/>
+                                            <Separator/>
                                         </StackPanel>
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding ="{Binding Students.Count}" Value="0" >
+                                                <Setter TargetName="TextView" Property="Foreground" Value="Red"/>
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel/>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
                             </ListBox>
-
                         </DockPanel>
                         
                     </GroupBox>
                     <GroupBox Grid.Column="1" Header="{Binding StringFormat=Студенты:{0}, Path=SelectedGroup.Name, FallbackValue=Студенты}">
-                        <DataGrid ItemsSource ="{Binding SelectedGroup.Students}" 
+                        <DataGrid ItemsSource ="{Binding SelectedGroup.Students}"
                                   AutoGenerateColumns="False" 
-                                  CanUserAddRows="False"
                                   GridLinesVisibility="Vertical"
                                   VerticalGridLinesBrush="DarkGray"
-                                  AlternatingRowBackground="#ffe3bf">
+                                  AlternatingRowBackground="#ffe3bf"
+                                  EnableRowVirtualization="True"
+                                  EnableColumnVirtualization="true">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="true"/>
-                                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" IsReadOnly="true"/>
-                                <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}" IsReadOnly="true"/>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"/>
+                                <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}"/>
                                 <DataGridTemplateColumn Header="Birthday">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -110,7 +162,7 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTextColumn Header="Age" Binding="{Binding Age}" IsReadOnly="true"/>
+                                <DataGridTextColumn Header="Age" Binding="{Binding Age}"/>
                                 <DataGridTextColumn Header="Group" Binding="{Binding 
                                     DataContext.SelectedGroup.Name, 
                                     RelativeSource={RelativeSource AncestorType=DataGrid}}" IsReadOnly="true" Width="Auto"/>
