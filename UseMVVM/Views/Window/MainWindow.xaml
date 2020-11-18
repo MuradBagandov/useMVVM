@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:sys="clr-namespace:System;assembly=System"
+        xmlns:cm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:local="clr-namespace:UseMVVM"
         xmlns:vm="clr-namespace:UseMVVM.ViewModels"
         xmlns:m="clr-namespace:UseMVVM.Models.HighShool"
@@ -92,6 +93,14 @@
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Groups">
                         <DockPanel>
+                            <DockPanel.Resources>
+                                <CollectionViewSource x:Key="GroupCollection" Source="{Binding Groups}">
+                                    <CollectionViewSource.SortDescriptions>
+                                        <cm:SortDescription PropertyName="Name" Direction="Ascending"/>
+                                    </CollectionViewSource.SortDescriptions>
+                                </CollectionViewSource>
+                            </DockPanel.Resources>
+                            
                             <UniformGrid DockPanel.Dock="Bottom" Columns="2" Height="25" Margin="0,4">
                                 <Button Content="Add" Margin="0,0,2,0" FontSize="12"
                                         Command="{Binding AddGroupCommand}"/>
@@ -100,7 +109,7 @@
                                         CommandParameter="{Binding SelectedGroup}"/>
                             </UniformGrid>
 
-                            <ListBox ItemsSource="{Binding Groups}"
+                            <ListBox ItemsSource="{Binding Source={StaticResource GroupCollection}}"
                                      SelectedIndex="0" 
                                      SelectedItem="{Binding SelectedGroup}" 
                                      HorizontalContentAlignment="Stretch"
