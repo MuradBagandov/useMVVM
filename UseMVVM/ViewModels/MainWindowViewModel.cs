@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using UseMVVM.Infrastuctures.Commands;
 using UseMVVM.Models.HighShool;
@@ -44,7 +46,63 @@ namespace UseMVVM.ViewModels
         public Group SelectedGroup
         {
             get => _selectedGroup;
-            set => Set(ref _selectedGroup, value);
+            set
+            {
+                if (Set(ref _selectedGroup, value))
+                {
+                    _selectedGroupStudent.Source = value?.Students;
+                    OnPropertyChanged(nameof(SelectedGroupStudent));
+                }
+            }
+
+        }
+        #endregion
+
+        #region свойство SelectedGroupStudent и мтод фильтрации
+        private CollectionViewSource _selectedGroupStudent = new CollectionViewSource();
+
+        private void OnStudentFiltred(object sender, FilterEventArgs e)
+        {
+            if (!(e.Item is Student))
+            {
+                e.Accepted = false;
+                return;
+            }
+
+            if (string.IsNullOrEmpty(_filterStudentText))
+                return;
+
+            Student student = (Student)e.Item;
+
+            if (student.Name is null || student.Surname is null)
+            {
+                e.Accepted = false;
+                return;
+            }
+
+            if (student.Name.Contains(_filterStudentText)) return;
+            if (student.Surname.Contains(_filterStudentText)) return;
+            if (student.Patronymic.Contains(_filterStudentText)) return;
+
+            e.Accepted = false;
+
+        }
+
+        public ICollectionView SelectedGroupStudent => _selectedGroupStudent?.View; 
+        #endregion
+
+        #region FilterStudentText
+        private string _filterStudentText;
+
+        public string FilterStudentText
+        {
+            get => _filterStudentText;
+            set 
+            {
+                if (Set(ref _filterStudentText, value))
+                    _selectedGroupStudent.View.Refresh();
+            }
+
         }
         #endregion
 
@@ -112,7 +170,11 @@ namespace UseMVVM.ViewModels
             Groups = new ObservableCollection<Group>(groups);
             _testList.Add(Groups[0]);
             _testList.Add(new ObservableCollection<Student>(students)[0]);
+
+            _selectedGroupStudent.Filter += OnStudentFiltred;
+            _selectedGroupStudent.SortDescriptions.Add(new SortDescription("Surname", ListSortDirection.Ascending));
         }
 
+        
     }
 }

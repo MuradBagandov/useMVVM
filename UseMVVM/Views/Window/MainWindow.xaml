@@ -107,14 +107,13 @@
                                      VirtualizingPanel.IsVirtualizing="True"
                                      VirtualizingPanel.IsContainerVirtualizable="True"
                                      VirtualizingPanel.VirtualizationMode="Recycling">
-                                
+
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="{x:Type m:Group}">
                                         <StackPanel Orientation="Vertical">
-                                            <TextBox Name="TextView" 
-                                                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                                            <TextBlock Name="TextView" 
+                                                     Text="{Binding Name}" 
                                                      Foreground="Black" Background="Transparent"
-                                                     BorderThickness="0"
                                                      FontWeight="Bold"
                                                      Margin="3,0,0,0"/>
 
@@ -136,38 +135,46 @@
                                 </ListBox.ItemsPanel>
                             </ListBox>
                         </DockPanel>
-                        
                     </GroupBox>
+                    
                     <GroupBox Grid.Column="1" Header="{Binding StringFormat=Студенты:{0}, Path=SelectedGroup.Name, FallbackValue=Студенты}">
-                        <DataGrid ItemsSource ="{Binding SelectedGroup.Students}"
+                        <DockPanel>
+                            <DockPanel DockPanel.Dock="Top" Margin="0,5">
+                                <fa:ImageAwesome Icon="Search" Height="10" Margin="5,0"/>
+                                <TextBox Text="{Binding FilterStudentText, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,5,0"/>
+                            </DockPanel>
+
+                            <DataGrid ItemsSource ="{Binding SelectedGroupStudent}"
                                   AutoGenerateColumns="False" 
                                   GridLinesVisibility="Vertical"
                                   VerticalGridLinesBrush="DarkGray"
                                   AlternatingRowBackground="#ffe3bf"
                                   EnableRowVirtualization="True"
                                   EnableColumnVirtualization="true">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"/>
-                                <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}"/>
-                                <DataGridTemplateColumn Header="Birthday">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text ="{Binding Birthday, StringFormat=dd.MM.yyyy}"/>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                    <DataGridTemplateColumn.CellEditingTemplate>
-                                        <DataTemplate>
-                                            <DatePicker SelectedDate="{Binding Birthday}"/>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellEditingTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTextColumn Header="Age" Binding="{Binding Age}"/>
-                                <DataGridTextColumn Header="Group" Binding="{Binding 
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                                    <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"/>
+                                    <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}"/>
+                                    <DataGridTemplateColumn Header="Birthday">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text ="{Binding Birthday, StringFormat=dd.MM.yyyy}"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                        <DataGridTemplateColumn.CellEditingTemplate>
+                                            <DataTemplate>
+                                                <DatePicker SelectedDate="{Binding Birthday}"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellEditingTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Age" Binding="{Binding Age}"/>
+                                    <DataGridTextColumn Header="Group" Binding="{Binding 
                                     DataContext.SelectedGroup.Name, 
                                     RelativeSource={RelativeSource AncestorType=DataGrid}}" IsReadOnly="true" Width="Auto"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                        
                     </GroupBox>
                 </Grid>
             </TabItem>
