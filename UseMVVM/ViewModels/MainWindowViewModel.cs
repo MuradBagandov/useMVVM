@@ -106,6 +106,18 @@ namespace UseMVVM.ViewModels
         }
         #endregion
 
+        //public IEnumerable<DirectoryViewModel> Disc => file
+
+        public DirectoryViewModel DirectoryRoot => new DirectoryViewModel("c:\\");
+
+        private DirectoryViewModel _selectDirectory;
+
+        public DirectoryViewModel SelectedDirectory
+        {
+            get => _selectDirectory;
+            set => Set(ref _selectDirectory, value);
+        }
+
         #endregion
 
         #region Commands

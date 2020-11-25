@@ -187,6 +187,59 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
+            <TabItem Header="Файловая система">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <GroupBox Header="Directories">
+                        
+                        <ListBox ItemsSource="{Binding DirectoryRoot.Directories}" 
+                                 SelectedItem="{Binding SelectedDirectory, UpdateSourceTrigger=PropertyChanged}"
+                                 SelectedIndex="0"
+                                 DisplayMemberPath="Name">
+                        </ListBox>
+                        
+                        <!--<TreeView ItemsSource="{Binding DirectoryRoot.Directories}" >
+                            <TreeView.ItemTemplate>
+                                <HierarchicalDataTemplate DataType="{x:Type vm:DirectoryViewModel}" 
+                                                      ItemsSource="{Binding Directories}">
+                                    <TextBlock Text="{Binding Name}"/>
+                                </HierarchicalDataTemplate>
+                            </TreeView.ItemTemplate>
+                        </TreeView>-->
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Header="{Binding SelectedDirectory.FullName, FallbackValue=Файлы}">
+                        <GroupBox.Resources>
+                            <DataTemplate DataType="{x:Type vm:FileViewModel}">
+
+                                <StackPanel Orientation="Vertical" Margin="2" Width="80">
+                                    <fa:ImageAwesome Icon="File" Width="40" Margin="0,5" Foreground="DarkGray"/>
+                                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextAlignment="Center"/>
+                                </StackPanel>
+
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:DirectoryViewModel}">
+                                <StackPanel Orientation="Vertical" Margin="2" Width="80">
+                                    <fa:ImageAwesome Icon="Folder" Width="40" Margin="0,5" Foreground="Orange"/>
+                                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupBox.Resources>
+
+                        <ListBox ItemsSource="{Binding SelectedDirectory.DirectoryItems}" VerticalContentAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal"  HorizontalAlignment="Stretch" />
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
+                    </GroupBox>
+                </Grid>
+                
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>
