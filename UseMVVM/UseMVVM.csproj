@@ -92,6 +92,7 @@
     <Compile Include="Models\HighShool\Student.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\CalculateViewModel.cs" />
+    <Compile Include="ViewModels\DirectoryViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\Window\Calculate.xaml.cs">
       <DependentUpon>Calculate.xaml</DependentUpon>
