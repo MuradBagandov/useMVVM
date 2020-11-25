@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
-
     <Style TargetType="TextBox" x:Key="TextBoxWithValidation">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -60,10 +59,16 @@
     </Style>
 
     <ControlTemplate x:Key="TextBoxBaseControlTemplate1" TargetType="{x:Type TextBoxBase}">
-        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+        <Border x:Name="border" 
+                BorderBrush="{TemplateBinding BorderBrush}" 
+                BorderThickness="{TemplateBinding BorderThickness}" 
+                Background="{TemplateBinding Background}" 
+                SnapsToDevicePixels="True">
+            <ScrollViewer x:Name="PART_ContentHost" 
+                          Focusable="False" 
+                          HorizontalScrollBarVisibility="Hidden" 
+                          VerticalScrollBarVisibility="Hidden"/>
         </Border>
-        
     </ControlTemplate>
 
 </ResourceDictionary>
