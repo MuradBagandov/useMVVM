@@ -195,23 +195,40 @@
                     </Grid.ColumnDefinitions>
 
                     <GroupBox Header="Directories">
+                        <GroupBox.Resources>
+                            <HierarchicalDataTemplate DataType="{x:Type vm:DriverViewModel}" 
+                                                      ItemsSource="{Binding Directories}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:ImageAwesome Icon="HddOutline" Height="8" Margin="0,2,5,0"/>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                            <HierarchicalDataTemplate DataType="{x:Type vm:DirectoryViewModel}" 
+                                                      ItemsSource="{Binding Directories}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:ImageAwesome Icon="FolderOutline" Height="8" Margin="0,2,5,0"/>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                            <HierarchicalDataTemplate DataType="{x:Type vm:FileViewModel}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:ImageAwesome Icon="FileOutline" Height="8" Margin="0,2,5,0"/>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </GroupBox.Resources>
                         
-                        <ListBox ItemsSource="{Binding DirectoryRoot.Directories}" 
+                        <!--<ListBox ItemsSource="{Binding DirectoryRoot.Directories}" 
                                  SelectedItem="{Binding SelectedDirectory, UpdateSourceTrigger=PropertyChanged}"
                                  SelectedIndex="0"
                                  DisplayMemberPath="Name">
-                        </ListBox>
-                        
-                        <!--<TreeView ItemsSource="{Binding DirectoryRoot.Directories}" >
-                            <TreeView.ItemTemplate>
-                                <HierarchicalDataTemplate DataType="{x:Type vm:DirectoryViewModel}" 
-                                                      ItemsSource="{Binding Directories}">
-                                    <TextBlock Text="{Binding Name}"/>
-                                </HierarchicalDataTemplate>
-                            </TreeView.ItemTemplate>
-                        </TreeView>-->
+                        </ListBox>-->
+
+                        <TreeView ItemsSource="{Binding Drivers}"/>
                     </GroupBox>
-                    <GroupBox Grid.Column="1" Header="{Binding SelectedDirectory.FullName, FallbackValue=Файлы}">
+                    <GridSplitter VerticalAlignment="Stretch" Width="1" HorizontalAlignment="Right"/>
+
+                    <GroupBox Grid.Column="1" Header="{Binding SelectedDirectory.FullName, FallbackValue=Files}">
                         <GroupBox.Resources>
                             <DataTemplate DataType="{x:Type vm:FileViewModel}">
                                 <StackPanel Orientation="Vertical" Margin="2" Width="80">

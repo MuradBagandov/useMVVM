@@ -10,12 +10,31 @@ namespace UseMVVM.ViewModels
     internal class DriverViewModel : Base.ViewModel
     {
         private readonly DriveInfo _driverInfo;
+        private readonly DirectoryViewModel _rootDirectory;
 
         public DriverViewModel(string path)
         {
             _driverInfo = new DriveInfo(path);
-            
+            _rootDirectory = new DirectoryViewModel(path);
         }
+
+        public DriverViewModel(DriveInfo drive) : this(drive.Name) { }
+
+        public IEnumerable<DirectoryViewModel> Directories => _rootDirectory.Directories;
+        
+        public IEnumerable<object> DirectoryItems => Directories.Cast<object>().Concat(_rootDirectory.Files);
+
+        public string Name => _driverInfo.Name;
+
+        public string VolumeLabel => _driverInfo.VolumeLabel;
+
+        public long AvailableFreeSpace => _driverInfo.AvailableFreeSpace;
+
+        public long TotalSize => _driverInfo.TotalSize;
+
+        public long TotalFreeSpace => _driverInfo.TotalFreeSpace;
+
+        public DriveType DriveType => _driverInfo.DriveType;
     }
 
     internal class DirectoryViewModel : Base.ViewModel
@@ -44,8 +63,6 @@ namespace UseMVVM.ViewModels
                 
             }
         } 
-
-        
 
         public IEnumerable<FileViewModel> Files
         {
@@ -87,7 +104,5 @@ namespace UseMVVM.ViewModels
         public string FullName => _fileInfo.FullName;
 
         public DateTime CreationTime => _fileInfo.CreationTime;
-
     }
-
 }

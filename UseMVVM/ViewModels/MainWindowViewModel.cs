@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -105,7 +106,11 @@ namespace UseMVVM.ViewModels
         }
         #endregion
 
-        //public IEnumerable<DirectoryViewModel> Disc => file
+        #region Drivers
+        public IEnumerable<DriverViewModel> Drivers => DriveInfo.GetDrives()
+            .Where(d => d.DriveType == DriveType.Fixed)
+            .Select(d => new DriverViewModel(d)); 
+        #endregion
 
         #region DirectoryRoot
         public DirectoryViewModel DirectoryRoot => new DirectoryViewModel("c:\\");
