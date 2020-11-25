@@ -8,7 +8,7 @@
         xmlns:vm="clr-namespace:UseMVVM.ViewModels"
         mc:Ignorable="d"
         Title="Calculate" Height="350" Width="280"  
-        ResizeMode="CanMinimize" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+        ResizeMode="CanMinimize" WindowStyle="None" AllowsTransparency="True" Background="{StaticResource SolidBrush_Transporent}">
 
     <Window.DataContext>
         <vm:CalculateViewModel/>
@@ -21,9 +21,9 @@
                 <ResourceDictionary Source="../../Resources/Styles/ButtonOnWindowsHeader.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="TextBox">
-                <Setter Property="Background" Value="#202020"/>
+                <Setter Property="Background" Value="{StaticResource SolidBrush_HighDarkGray}"/>
                 <Setter Property="BorderBrush" Value="{x:Null}"/>
-                <Setter Property="Foreground" Value="white"/>
+                <Setter Property="Foreground" Value="{StaticResource SolidBrush_White}"/>
                 <Setter Property="FontFamily" Value="Calisto MT"/>
                 <Setter Property="Padding" Value="5,0"/>
                 <Setter Property="Template" Value="{StaticResource TextBoxBaseControlTemplate1}"/>
@@ -34,8 +34,8 @@
     <Window.Template>
         <ControlTemplate>
             <Border x:Name="WindowHead" CornerRadius="1" BorderThickness="1" 
-                    Background="#202020"  
-                    BorderBrush="#404040"
+                    Background="{StaticResource SolidBrush_HighDarkGray}"  
+                    BorderBrush="{StaticResource SolidBrush_MiddleDarkGray}"
                     MouseLeftButtonDown="WindowHead_MouseLeftButtonDown">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -43,7 +43,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" Background="#3399ff">
+                    <Grid Grid.Row="0" Background="{StaticResource SolidBrush_LightBlue}">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Template="{StaticResource CloseOnWindowHead}" HorizontalAlignment="Right" 
                                 Command="{StaticResource CloseApplicationCommand}" Margin="1"/>
@@ -62,7 +62,7 @@
                              FontSize="24" 
                              TextAlignment="Right" 
                              VerticalContentAlignment="Bottom"/>
-                        <Rectangle Grid.Row="1" Margin="5,0,5,0" Height="1" Fill="#555555"/>
+                        <Rectangle Grid.Row="1" Margin="5,0,5,0" Height="1" Fill="{StaticResource SolidBrush_Gray}"/>
                         <TextBox Grid.Row="2" Text="{Binding Result, TargetNullValue=0}" 
                              IsReadOnly="true"
                              FontSize="20" 

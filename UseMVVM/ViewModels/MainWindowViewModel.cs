@@ -16,9 +16,8 @@ namespace UseMVVM.ViewModels
 {
     internal class MainWindowViewModel:ViewModel
     {
-        public ObservableCollection<Group> Groups { get; set; }
-
         #region Property
+        public ObservableCollection<Group> Groups { get; set; }
 
         #region TestList
         private List<object> _testList = new List<object> { "txt112", "txt12214" };
@@ -108,15 +107,19 @@ namespace UseMVVM.ViewModels
 
         //public IEnumerable<DirectoryViewModel> Disc => file
 
+        #region DirectoryRoot
         public DirectoryViewModel DirectoryRoot => new DirectoryViewModel("c:\\");
+        #endregion
 
-        private DirectoryViewModel _selectDirectory;
+        #region SelectedDirectory
+        private DirectoryViewModel _selectedDirectory;
 
         public DirectoryViewModel SelectedDirectory
         {
-            get => _selectDirectory;
-            set => Set(ref _selectDirectory, value);
-        }
+            get => _selectedDirectory;
+            set => Set(ref _selectedDirectory, value);
+        } 
+        #endregion
 
         #endregion
 

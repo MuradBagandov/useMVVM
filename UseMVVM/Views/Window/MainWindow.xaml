@@ -1,6 +1,6 @@
 ﻿<Window x:Class="UseMVVM.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="d"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
@@ -10,7 +10,7 @@
         xmlns:vm="clr-namespace:UseMVVM.ViewModels"
         xmlns:m="clr-namespace:UseMVVM.Models.HighShool"
         xmlns:cmd="clr-namespace:UseMVVM.Infrastuctures.Commands"
-        mc:Ignorable="d"
+        
         Title="{Binding Title}" 
         Height="450" Width="800">
     
@@ -82,7 +82,7 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <fa:ImageAwesome Icon="Male" Foreground="#FF747474" Height="10" Margin="0,0,7,0"/>
+                        <fa:ImageAwesome Icon="Male" Foreground="{StaticResource SolidBrush_Gray}" Height="10" Margin="0,0,7,0"/>
                         <TextBlock Text="Students"/>
                     </StackPanel>
                 </TabItem.Header>
@@ -122,7 +122,7 @@
                                         <StackPanel Orientation="Vertical">
                                             <TextBlock Name="TextView" 
                                                      Text="{Binding Name}" 
-                                                     Foreground="Black" Background="Transparent"
+                                                     Foreground="{StaticResource SolidBrush_Black}" Background="{StaticResource SolidBrush_Transporent}"
                                                      FontWeight="Bold"
                                                      Margin="3,0,0,0"/>
 
@@ -132,7 +132,7 @@
                                         </StackPanel>
                                         <DataTemplate.Triggers>
                                             <DataTrigger Binding ="{Binding Students.Count}" Value="0" >
-                                                <Setter TargetName="TextView" Property="Foreground" Value="Red"/>
+                                                <Setter TargetName="TextView" Property="Foreground" Value="{StaticResource SolidBrush_Red}"/>
                                             </DataTrigger>
                                         </DataTemplate.Triggers>
                                     </DataTemplate>
@@ -156,8 +156,8 @@
                             <DataGrid ItemsSource ="{Binding SelectedGroupStudent}"
                                   AutoGenerateColumns="False" 
                                   GridLinesVisibility="Vertical"
-                                  VerticalGridLinesBrush="DarkGray"
-                                  AlternatingRowBackground="#ffe3bf"
+                                  VerticalGridLinesBrush="{StaticResource SolidBrush_Gray}"
+                                  AlternatingRowBackground="{StaticResource SolidBrush_AntiqueWhite}"
                                   EnableRowVirtualization="True"
                                   EnableColumnVirtualization="true">
                                 <DataGrid.Columns>
@@ -214,16 +214,14 @@
                     <GroupBox Grid.Column="1" Header="{Binding SelectedDirectory.FullName, FallbackValue=Файлы}">
                         <GroupBox.Resources>
                             <DataTemplate DataType="{x:Type vm:FileViewModel}">
-
                                 <StackPanel Orientation="Vertical" Margin="2" Width="80">
-                                    <fa:ImageAwesome Icon="File" Width="40" Margin="0,5" Foreground="DarkGray"/>
+                                    <fa:ImageAwesome Icon="File" Width="40" Margin="0,5" Foreground="{StaticResource SolidBrush_HighLightGray}"/>
                                     <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextAlignment="Center"/>
                                 </StackPanel>
-
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type vm:DirectoryViewModel}">
                                 <StackPanel Orientation="Vertical" Margin="2" Width="80">
-                                    <fa:ImageAwesome Icon="Folder" Width="40" Margin="0,5" Foreground="Orange"/>
+                                    <fa:ImageAwesome Icon="Folder" Width="40" Margin="0,5" Foreground="{StaticResource SolidBrush_DarkOrange}"/>
                                     <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>

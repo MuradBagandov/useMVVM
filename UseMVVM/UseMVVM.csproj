@@ -58,6 +58,10 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Resources\Brush\SolidBrushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Commands.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
