@@ -17,7 +17,7 @@ namespace UseMVVM.ViewModels
 {
     internal class MainWindowViewModel:ViewModel
     {
-        #region Property
+        #region Properties
         public ObservableCollection<Group> Groups { get; set; }
 
         #region TestList
@@ -106,26 +106,6 @@ namespace UseMVVM.ViewModels
         }
         #endregion
 
-        #region Drivers
-        public IEnumerable<DriverViewModel> Drivers => DriveInfo.GetDrives()
-            .Where(d => d.DriveType == DriveType.Fixed)
-            .Select(d => new DriverViewModel(d)); 
-        #endregion
-
-        #region DirectoryRoot
-        public DirectoryViewModel DirectoryRoot => new DirectoryViewModel("c:\\");
-        #endregion
-
-        #region SelectedDirectory
-        private DirectoryViewModel _selectedDirectory;
-
-        public DirectoryViewModel SelectedDirectory
-        {
-            get => _selectedDirectory;
-            set => Set(ref _selectedDirectory, value);
-        } 
-        #endregion
-
         #endregion
 
         #region Commands
@@ -193,8 +173,6 @@ namespace UseMVVM.ViewModels
 
             _selectedGroupStudent.Filter += OnStudentFiltred;
             _selectedGroupStudent.SortDescriptions.Add(new SortDescription("Surname", ListSortDirection.Ascending));
-        }
-
-        
+        }  
     }
 }
