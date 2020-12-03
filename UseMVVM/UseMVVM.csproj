@@ -98,6 +98,7 @@
     <Compile Include="Infrastuctures\Commands\CloseApplicationCommand.cs" />
     <Compile Include="Infrastuctures\Commands\LambdaCommand.cs" />
     <Compile Include="Models\HighShool\Student.cs" />
+    <Compile Include="Models\PlaceInfo.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\CalculateViewModel.cs" />
     <Compile Include="ViewModels\DirectoryViewModel.cs" />
