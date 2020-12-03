@@ -33,7 +33,7 @@ namespace UseMVVM.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_da" +
             "ta/csse_covid_19_time_series/time_series_covid19_deaths_global.csv")]
@@ -41,21 +41,15 @@ namespace UseMVVM.Properties {
             get {
                 return ((string)(this["URI_CV19_Death"]));
             }
-            set {
-                this["URI_CV19_Death"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_da" +
             "ta/csse_covid_19_time_series/time_series_covid19_recovered_global.csv")]
         public string URI_CV19_Recovered {
             get {
                 return ((string)(this["URI_CV19_Recovered"]));
-            }
-            set {
-                this["URI_CV19_Recovered"] = value;
             }
         }
     }
