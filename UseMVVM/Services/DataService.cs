@@ -25,10 +25,10 @@ namespace UseMVVM.Services
 
         private string _adressSourceData;
 
-        private static async Task<Stream> GetDataStream()
+        private async Task<Stream> GetDataStream()
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetAsync(new Properties.Settings().URI_CV19_Confirmed, HttpCompletionOption.ResponseHeadersRead);
+            var response = await client.GetAsync(_adressSourceData, HttpCompletionOption.ResponseHeadersRead);
             return await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
         }
 

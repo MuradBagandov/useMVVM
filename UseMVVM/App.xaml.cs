@@ -14,8 +14,10 @@ namespace UseMVVM
     /// </summary>
     public partial class App : Application
     {
+        public bool IsDesignMode { get; set; } = true;
         protected override void OnStartup(StartupEventArgs e)
         {
+            IsDesignMode = false;
             base.OnStartup(e);
         }
     }
