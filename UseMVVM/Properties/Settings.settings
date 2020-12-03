@@ -1,7 +1,15 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="UseMVVM.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="URI_CV19_Confirmed" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv</Value>
+    </Setting>
+    <Setting Name="URI_CV19_Death" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv</Value>
+    </Setting>
+    <Setting Name="URI_CV19_Recovered" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
