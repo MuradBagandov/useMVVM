@@ -165,14 +165,17 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <StackPanel>
                         <Slider x:Name="sl1" Maximum="100" Margin="3,5"/>
                         <Slider x:Name="sl2" Maximum="100" Margin="3,5"/>
-                        <TextBox Text="{Binding Value, ElementName=sl1, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Text="{Binding Value, ElementName=sl1, Converter={StaticResource RatioConvertor}}"/>
-                        <TextBlock Text="{Binding Value, ElementName=sl1, Converter={StaticResource CompositeConvertor}}"/>
+
+                        <StackPanel Margin="3,5">
+                            <TextBlock Text="{Binding Value, ElementName=sl1, Converter={StaticResource RatioConvertor}}"/>
+                            <TextBlock Text="{Binding Value, ElementName=sl2, Converter={StaticResource CompositeConvertor}}"/>
+                        </StackPanel>
                     </StackPanel>
+                    
                     <ListBox Grid.Column="1" Margin="5">
                         <ListBox.ItemsSource>
                             <MultiBinding Converter="{StaticResource ToArrayConvertor}">
