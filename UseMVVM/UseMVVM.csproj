@@ -106,6 +106,8 @@
     <Compile Include="Infrastuctures\Commands\Base\Command.cs" />
     <Compile Include="Infrastuctures\Commands\CloseApplicationCommand.cs" />
     <Compile Include="Infrastuctures\Commands\LambdaCommand.cs" />
+    <Compile Include="Infrastuctures\Convertors\LocationPointToString.cs" />
+    <Compile Include="Infrastuctures\Convertors\Ratio.cs" />
     <Compile Include="Models\HighShool\Student.cs" />
     <Compile Include="Models\PlaceInfo.cs" />
     <Compile Include="Services\DataService.cs" />

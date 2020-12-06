@@ -13,7 +13,6 @@ namespace UseMVVM.ViewModels
 {
     internal class CountriesStatisticViewModel : Base.ViewModel
     {
-        
         private DataService _DataService;
 
         #region Properties
@@ -55,10 +54,7 @@ namespace UseMVVM.ViewModels
 
         #endregion
 
-        public CountriesStatisticViewModel():this(null)
-        {
-            
-        }
+        public CountriesStatisticViewModel():this(null) {  }
 
         public CountriesStatisticViewModel(MainWindowViewModel main)
         {
@@ -69,7 +65,5 @@ namespace UseMVVM.ViewModels
             RefreshDataCommand = new LambdaCommand(OnRefreshDataCommandExecuted);
             #endregion
         }
-
-        
     }
 }

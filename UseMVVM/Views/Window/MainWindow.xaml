@@ -11,7 +11,7 @@
         xmlns:views="clr-namespace:UseMVVM.Views"
         xmlns:m="clr-namespace:UseMVVM.Models.HighShool"
         xmlns:cmd="clr-namespace:UseMVVM.Infrastuctures.Commands"
-        
+        xmlns:conv="clr-namespace:UseMVVM.Infrastuctures.Convertors"
         Title="{Binding Title}" 
         Height="450" Width="800">
 
@@ -148,6 +148,16 @@
             </TabItem>
             <TabItem Header="Файловая система">
                 <views:FileManagerView/>
+            </TabItem>
+            <TabItem Header="Convertors">
+                <TabItem.Resources>
+                    <conv:Ratio x:Key="RatioConvertor" K="5"/>
+                </TabItem.Resources>
+
+                <StackPanel>
+                    <Slider x:Name="sl1" Maximum="100"/>
+                    <TextBlock Text="{Binding Value, ElementName=sl1, Converter={StaticResource RatioConvertor}}"/>
+                </StackPanel>
             </TabItem>
         </TabControl>
     </DockPanel>
