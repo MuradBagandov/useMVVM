@@ -107,10 +107,12 @@
     <Compile Include="Infrastuctures\Commands\CloseApplicationCommand.cs" />
     <Compile Include="Infrastuctures\Commands\LambdaCommand.cs" />
     <Compile Include="Infrastuctures\Convertors\Base\Convertor.cs" />
+    <Compile Include="Infrastuctures\Convertors\Base\MultiConvertor.cs" />
     <Compile Include="Infrastuctures\Convertors\CompositeConvertor.cs" />
     <Compile Include="Infrastuctures\Convertors\Linear.cs" />
     <Compile Include="Infrastuctures\Convertors\LocationPointToString.cs" />
     <Compile Include="Infrastuctures\Convertors\Ratio.cs" />
+    <Compile Include="Infrastuctures\Convertors\ToArray.cs" />
     <Compile Include="Models\HighShool\Student.cs" />
     <Compile Include="Models\PlaceInfo.cs" />
     <Compile Include="Services\DataService.cs" />
