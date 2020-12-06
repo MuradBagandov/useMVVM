@@ -152,11 +152,13 @@
             <TabItem Header="Convertors">
                 <TabItem.Resources>
                     <conv:Ratio x:Key="RatioConvertor" K="5"/>
+                    <conv:Linear x:Key="LinearConvertor" B="3" K="1"/>
                 </TabItem.Resources>
 
                 <StackPanel>
                     <Slider x:Name="sl1" Maximum="100"/>
                     <TextBlock Text="{Binding Value, ElementName=sl1, Converter={StaticResource RatioConvertor}}"/>
+                    <TextBlock Text="{Binding Value, ElementName=sl1, Converter={StaticResource LinearConvertor}}"/>
                 </StackPanel>
             </TabItem>
         </TabControl>
