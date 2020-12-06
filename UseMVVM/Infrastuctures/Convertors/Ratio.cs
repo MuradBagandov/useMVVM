@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace UseMVVM.Infrastuctures.Convertors
 {
-    class Ratio : IValueConverter
+    internal class Ratio : Base.Convertor
     {
         public double K { get; set; } = 1;
 
@@ -16,7 +16,7 @@ namespace UseMVVM.Infrastuctures.Convertors
 
         public Ratio(double k) => K = k;
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is null)
                 throw new NotImplementedException();
@@ -24,7 +24,7 @@ namespace UseMVVM.Infrastuctures.Convertors
             return v * K;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is null)
                 throw new NotImplementedException();

@@ -9,9 +9,9 @@ using System.Windows.Data;
 
 namespace UseMVVM.Infrastuctures.Convertors
 {
-    class LocationPointToString : IValueConverter
+    internal class LocationPointToString : Base.Convertor
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!(value is Point point))
                 throw new NotImplementedException();
@@ -19,7 +19,7 @@ namespace UseMVVM.Infrastuctures.Convertors
             return $"Lat: {point.X}; Lon: {point.Y}";
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
