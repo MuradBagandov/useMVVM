@@ -11,11 +11,10 @@ using System.Windows.Data;
 using System.Windows.Input;
 using UseMVVM.Infrastuctures.Commands;
 using UseMVVM.Models.HighShool;
-using UseMVVM.ViewModels.Base;
 
 namespace UseMVVM.ViewModels
 {
-    internal class MainWindowViewModel:ViewModel
+    internal class MainWindowViewModel: Base.ViewModel
     {
         public CountriesStatisticViewModel CountriesStatistic { get; }
 

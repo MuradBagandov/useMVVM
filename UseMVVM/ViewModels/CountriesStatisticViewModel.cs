@@ -26,6 +26,16 @@ namespace UseMVVM.ViewModels
         {
             get => _Countries;
             set => Set(ref _Countries, value);
+        }
+        #endregion
+
+        #region SelectedCountry : CountryInfo
+        private CountryInfo _SelectedCountry;
+
+        public CountryInfo SelectedCountry
+        {
+            get => _SelectedCountry;
+            set => Set(ref _SelectedCountry, value);
         } 
         #endregion
 
@@ -40,10 +50,15 @@ namespace UseMVVM.ViewModels
         private void OnRefreshDataCommandExecuted(object p)
         {
             Countries = _DataService.GetData(RecievedData.Confirmed);
-        } 
+        }
         #endregion
 
         #endregion
+
+        public CountriesStatisticViewModel():this(null)
+        {
+            
+        }
 
         public CountriesStatisticViewModel(MainWindowViewModel main)
         {
@@ -54,5 +69,7 @@ namespace UseMVVM.ViewModels
             RefreshDataCommand = new LambdaCommand(OnRefreshDataCommandExecuted);
             #endregion
         }
+
+        
     }
 }

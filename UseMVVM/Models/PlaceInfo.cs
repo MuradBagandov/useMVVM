@@ -14,6 +14,11 @@ namespace UseMVVM.Models
         public virtual Point Location { get; set; }
 
         public IEnumerable<ConfirmedCount> Counts { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     internal class CountryInfo : PlaceInfo
