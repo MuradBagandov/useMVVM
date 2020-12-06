@@ -5,16 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace UseMVVM.Infrastuctures.Convertors
 {
+    [ValueConversion(typeof(double), typeof(double))]
     internal class Ratio : Base.Convertor
     {
+        [ConstructorArgument(nameof(K))]
         public double K { get; set; } = 1;
 
         public Ratio() { }
 
-        public Ratio(double k) => K = k;
+        public Ratio(double K) => this.K = K;
 
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

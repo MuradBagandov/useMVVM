@@ -9,6 +9,7 @@ using System.Windows.Data;
 
 namespace UseMVVM.Infrastuctures.Convertors
 {
+    [ValueConversion(typeof(Point), typeof(string))]
     internal class LocationPointToString : Base.Convertor
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)

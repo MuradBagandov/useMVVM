@@ -5,22 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace UseMVVM.Infrastuctures.Convertors
 {
     [ValueConversion(typeof(double), typeof(double))]
     internal class Linear : Base.Convertor
     {
+        [ConstructorArgument(nameof(K))]
         public double K { get; set; } = 1;
+
+        [ConstructorArgument(nameof(B))]
         public double B { get; set; }
 
         public Linear() { }
-
-        public Linear(double k, double b)
-        {
-            K = k;
-            B = b;
-        }
+        public Linear(double K) => this.K = K;
+        public Linear(double K, double B):this(K)=> this.B = B;
 
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
