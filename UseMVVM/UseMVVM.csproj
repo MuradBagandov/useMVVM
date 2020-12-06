@@ -80,6 +80,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CountriesStatisticView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FileManagerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,9 +108,13 @@
     <Compile Include="Services\DataService.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\CalculateViewModel.cs" />
+    <Compile Include="ViewModels\CountriesStatisticViewModel.cs" />
     <Compile Include="ViewModels\DirectoryViewModel.cs" />
     <Compile Include="ViewModels\FileManagerViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\CountriesStatisticView.xaml.cs">
+      <DependentUpon>CountriesStatisticView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FileManagerView.xaml.cs">
       <DependentUpon>FileManagerView.xaml</DependentUpon>
     </Compile>

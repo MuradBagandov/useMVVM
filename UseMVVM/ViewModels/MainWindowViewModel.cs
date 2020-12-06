@@ -17,6 +17,8 @@ namespace UseMVVM.ViewModels
 {
     internal class MainWindowViewModel:ViewModel
     {
+        public CountriesStatisticViewModel CountriesStatistic { get; }
+
         #region Properties
         public ObservableCollection<Group> Groups { get; set; }
 
@@ -137,6 +139,8 @@ namespace UseMVVM.ViewModels
 
         public MainWindowViewModel()
         {
+            CountriesStatistic = new CountriesStatisticViewModel(this);
+
             #region Commands
             RemoveGroupCommand = new LambdaCommand(OnRemoveGroupCommandExecuted, CanRemoveGroupCommandExecute);
             AddGroupCommand = new LambdaCommand(OnAddGroupCommandExecuted, CanAddGroupCommandExecute); 

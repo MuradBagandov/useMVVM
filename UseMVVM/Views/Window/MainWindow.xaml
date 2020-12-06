@@ -35,6 +35,9 @@
         </Menu>
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
         <TabControl Background="White">
+            <TabItem Header="CV-19 Statistics">
+                <views:CountriesStatisticView  DataContext="{Binding CountriesStatistic}"/>
+            </TabItem>
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
