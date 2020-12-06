@@ -14,11 +14,11 @@
         
         Title="{Binding Title}" 
         Height="450" Width="800">
-    
+
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    
+
     <Window.InputBindings>
         <KeyBinding Key="F5" Modifiers="Alt" Command="{StaticResource CloseApplicationCommand}"/>
     </Window.InputBindings>
@@ -35,51 +35,6 @@
         </Menu>
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
         <TabControl Background="White">
-            <TabItem Header="Item1">
-                <TabItem.Resources>
-                    <DataTemplate DataType="{x:Type m:Group}">
-                        <StackPanel Orientation="Vertical">
-                            <TextBox Name="TextView" 
-                                                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
-                                                     Foreground="Black" Background="Transparent"
-                                                     BorderThickness="0"
-                                                     FontWeight="Bold"
-                                                     Margin="3,0,0,0"/>
-
-                            <TextBlock Text="{Binding Students.Count, StringFormat=Студентов: {0}}" 
-                                                       HorizontalAlignment="Right" Margin="0,0,3,0"/>
-                            <Separator/>
-                        </StackPanel>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type m:Student}">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="{Binding Name}" 
-                                       HorizontalAlignment="Center"/>
-
-                            <TextBlock Text="{Binding Surname}" 
-                                       HorizontalAlignment="Center" />
-                        </StackPanel>
-                    </DataTemplate>
-                    
-                </TabItem.Resources>
-                
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="300"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Button Content="btn1" Margin="2" FontSize ="12"/>
-                    <TextBox Style="{StaticResource TextBoxWithValidation}" Grid.Column="1" Margin="10" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
-                    <ComboBox Grid.Row="1" ItemsSource="{Binding TestList}" SelectedIndex="0" 
-                              HorizontalContentAlignment="Stretch"/>
-                </Grid>
-            </TabItem>
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -101,7 +56,7 @@
                                     </CollectionViewSource.SortDescriptions>
                                 </CollectionViewSource>
                             </DockPanel.Resources>
-                            
+
                             <UniformGrid DockPanel.Dock="Bottom" Columns="2" Height="25" Margin="0,4">
                                 <Button Content="Add" Margin="0,0,2,0" FontSize="12"
                                         Command="{Binding AddGroupCommand}"/>
@@ -146,7 +101,7 @@
                             </ListBox>
                         </DockPanel>
                     </GroupBox>
-                    
+
                     <GroupBox Grid.Column="1" Header="{Binding StringFormat=Студенты:{0}, Path=SelectedGroup.Name, FallbackValue=Студенты}">
                         <DockPanel>
                             <DockPanel DockPanel.Dock="Top" Margin="0,5">
@@ -184,7 +139,7 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </DockPanel>
-                        
+
                     </GroupBox>
                 </Grid>
             </TabItem>

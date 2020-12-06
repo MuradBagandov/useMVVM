@@ -20,16 +20,6 @@ namespace UseMVVM.ViewModels
         #region Properties
         public ObservableCollection<Group> Groups { get; set; }
 
-        #region TestList
-        private List<object> _testList = new List<object> { "txt112", "txt12214" };
-
-        public List<object> TestList
-        {
-            get => _testList;
-            set => Set(ref _testList, value);
-        }
-        #endregion
-
         #region Title
         private string _title = "MainTitle";
 
@@ -58,7 +48,7 @@ namespace UseMVVM.ViewModels
         }
         #endregion
 
-        #region свойство SelectedGroupStudent и мтод фильтрации
+        #region свойство SelectedGroupStudent и метод фильтрации
         private CollectionViewSource _selectedGroupStudent = new CollectionViewSource();
 
         private void OnStudentFiltred(object sender, FilterEventArgs e)
@@ -168,8 +158,6 @@ namespace UseMVVM.ViewModels
                 Students = new ObservableCollection<Student>(students) 
             });
             Groups = new ObservableCollection<Group>(groups);
-            _testList.Add(Groups[0]);
-            _testList.Add(new ObservableCollection<Student>(students)[0]);
 
             _selectedGroupStudent.Filter += OnStudentFiltred;
             _selectedGroupStudent.SortDescriptions.Add(new SortDescription("Surname", ListSortDirection.Ascending));
