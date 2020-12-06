@@ -151,14 +151,19 @@
             </TabItem>
             <TabItem Header="Convertors">
                 <TabItem.Resources>
-                    <conv:Ratio x:Key="RatioConvertor" K="5"/>
-                    <conv:Linear x:Key="LinearConvertor" B="3" K="1"/>
+                    <conv:Ratio x:Key="RatioConvertor" K="10"/>
+                    <conv:Linear x:Key="LinearConvertor" B="6" K="1"/>
+                    <conv:CompositeConvertor x:Key="CompositeConvertor" 
+                                             First="{StaticResource RatioConvertor}" 
+                                             Second="{StaticResource LinearConvertor}"/>
+
+
                 </TabItem.Resources>
 
                 <StackPanel>
                     <Slider x:Name="sl1" Maximum="100"/>
                     <TextBlock Text="{Binding Value, ElementName=sl1, Converter={StaticResource RatioConvertor}}"/>
-                    <TextBlock Text="{Binding Value, ElementName=sl1, Converter={StaticResource LinearConvertor}}"/>
+                    <TextBlock Text="{Binding Value, ElementName=sl1, Converter={StaticResource CompositeConvertor}}"/>
                 </StackPanel>
             </TabItem>
         </TabControl>
