@@ -10,6 +10,7 @@ using System.Windows.Markup;
 namespace UseMVVM.Infrastuctures.Convertors
 {
     [ValueConversion(typeof(double), typeof(double))]
+    [MarkupExtensionReturnType(typeof(Linear))]
     internal class Linear : Base.Convertor
     {
         [ConstructorArgument(nameof(K))]

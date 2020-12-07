@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace UseMVVM.Infrastuctures.Convertors
 {
     [ValueConversion(typeof(IValueConverter), typeof(IValueConverter))]
+    [MarkupExtensionReturnType(typeof(CompositeConvertor))]
     class CompositeConvertor : Base.Convertor
     {
         public IValueConverter First { get; set; }

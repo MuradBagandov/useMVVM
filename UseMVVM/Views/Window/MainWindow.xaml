@@ -12,6 +12,7 @@
         xmlns:m="clr-namespace:UseMVVM.Models.HighShool"
         xmlns:cmd="clr-namespace:UseMVVM.Infrastuctures.Commands"
         xmlns:conv="clr-namespace:UseMVVM.Infrastuctures.Convertors"
+        xmlns:common="clr-namespace:UseMVVM.Infrastuctures.Common"
         Title="{Binding Title}" 
         Height="450" Width="800">
 
@@ -173,17 +174,32 @@
                         <StackPanel Margin="3,5">
                             <TextBlock Text="{Binding Value, ElementName=sl1, Converter={StaticResource RatioConvertor}}"/>
                             <TextBlock Text="{Binding Value, ElementName=sl2, Converter={StaticResource CompositeConvertor}}"/>
+                            <TextBlock Text="{Binding Value, ElementName=sl2, Converter={conv:Linear K=3}}"/>
+                            <TextBlock Text="{Binding Value, ElementName=sl2, 
+                                Converter={conv:CompositeConvertor First={conv:Ratio K=2}, Second={conv:Linear B=50}}}"/>
                         </StackPanel>
                     </StackPanel>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <ListBox Grid.Row="0" Margin="5">
+                            <ListBox.ItemsSource>
+                                <MultiBinding Converter="{StaticResource ToArrayConvertor}">
+                                    <Binding ElementName="sl1" Path="Value"/>
+                                    <Binding ElementName="sl2" Path="Value"/>
+                                </MultiBinding>
+                            </ListBox.ItemsSource> 
+                        </ListBox>
+
+                        <ListBox Grid.Row="1" Margin="5" 
+                                 ItemsSource="{common:StringToIntArray Value='12;2;3;54'}"/>
+                    </Grid>
                     
-                    <ListBox Grid.Column="1" Margin="5">
-                        <ListBox.ItemsSource>
-                            <MultiBinding Converter="{StaticResource ToArrayConvertor}">
-                                <Binding ElementName="sl1" Path="Value"/>
-                                <Binding ElementName="sl2" Path="Value"/>
-                            </MultiBinding>
-                        </ListBox.ItemsSource>
-                    </ListBox>
+                    
                 </Grid>
                 
                 
