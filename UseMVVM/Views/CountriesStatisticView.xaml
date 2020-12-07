@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:oxy="http://oxyplot.org/wpf"
              xmlns:local="clr-namespace:UseMVVM"
              xmlns:views="clr-namespace:UseMVVM.Views"
              xmlns:vm="clr-namespace:UseMVVM.ViewModels"
@@ -24,7 +25,8 @@
                 <DataTemplate DataType="{x:Type models:CountryInfo}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}"/>
-                        <TextBlock Text="{Binding Location, Converter={StaticResource LocationConvertor}}" Margin="5,0,0,0"/>
+                        <TextBlock Text="{Binding Location, Converter={StaticResource LocationConvertor}}" 
+                                   Margin="5,0,0,0" Foreground="{StaticResource SolidBrush_LightRed}"/>
                     </StackPanel>
 
                 </DataTemplate>
@@ -45,6 +47,18 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
+
+                <oxy:Plot Grid.Row="0">
+                    <oxy:Plot.Axes>
+                        <oxy:LinearAxis Position="Left" Title="Количество" 
+                                        MinorGridlineStyle="Solid" MajorGridlineStyle="Solid"/>
+                        <oxy:DateTimeAxis Position="Bottom" Title="Дата" MajorGridlineStyle="Solid"/>
+                    </oxy:Plot.Axes>
+                    <oxy:LineSeries Color="red" StrokeThickness="1"
+                        ItemsSource="{Binding SelectedCountry.Counts}" DataFieldX="Date" DataFieldY="Count">
+                        
+                    </oxy:LineSeries>
+                </oxy:Plot>
                 <GridSplitter HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Bottom"/>
             </Grid>
         </GroupBox>

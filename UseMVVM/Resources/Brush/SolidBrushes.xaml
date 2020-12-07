@@ -7,9 +7,11 @@
     <SolidColorBrush x:Key="SolidBrush_AntiqueWhite" Color="AntiqueWhite"/>
     <SolidColorBrush x:Key="SolidBrush_Black" Color="Black"/>
     <SolidColorBrush x:Key="SolidBrush_Red" Color="Red"/>
+    <SolidColorBrush x:Key="SolidBrush_LightRed" Color="#FA5858"/>
     <SolidColorBrush x:Key="SolidBrush_Blue" Color="Blue"/>
     <SolidColorBrush x:Key="SolidBrush_LightBlue" Color="#3399ff"/>
     <SolidColorBrush x:Key="SolidBrush_Green" Color="Green"/>
+    <SolidColorBrush x:Key="SolidBrush_LightOrange" Color="#FE9A2E"/>
     <SolidColorBrush x:Key="SolidBrush_DarkOrange" Color="DarkOrange"/>
     <SolidColorBrush x:Key="SolidBrush_HighLightGray" Color="#ababab"/>
     <SolidColorBrush x:Key="SolidBrush_LightGray" Color="#808080"/>
