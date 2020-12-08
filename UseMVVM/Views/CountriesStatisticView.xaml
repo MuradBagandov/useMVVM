@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:oxy="http://oxyplot.org/wpf"
+             xmlns:map="clr-namespace:MapControl;assembly=MapControl.WPF"
              xmlns:local="clr-namespace:UseMVVM"
              xmlns:views="clr-namespace:UseMVVM.Views"
              xmlns:vm="clr-namespace:UseMVVM.ViewModels"
@@ -23,11 +24,9 @@
             <GroupBox.Resources>
                 <conv:LocationPointToString x:Key="LocationConvertor"/>
                 <DataTemplate DataType="{x:Type models:CountryInfo}">
-                    <StackPanel Orientation="Horizontal">
+                    <Grid>
                         <TextBlock Text="{Binding Name}"/>
-                        <TextBlock Text="{Binding Location, Converter={StaticResource LocationConvertor}}" 
-                                   Margin="5,0,0,0" Foreground="{StaticResource SolidBrush_LightRed}"/>
-                    </StackPanel>
+                    </Grid>
 
                 </DataTemplate>
             </GroupBox.Resources>
@@ -54,12 +53,20 @@
                                         MinorGridlineStyle="Solid" MajorGridlineStyle="Solid"/>
                         <oxy:DateTimeAxis Position="Bottom" Title="Дата" MajorGridlineStyle="Solid"/>
                     </oxy:Plot.Axes>
-                    <oxy:LineSeries Color="red" StrokeThickness="1"
+                    <oxy:LineSeries Color="red" StrokeThickness="2"
                         ItemsSource="{Binding SelectedCountry.Counts}" DataFieldX="Date" DataFieldY="Count">
                         
                     </oxy:LineSeries>
                 </oxy:Plot>
                 <GridSplitter HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Bottom"/>
+
+                
+                <map:Map Grid.Row="1" ZoomLevel="4" MaxZoomLevel="20" 
+                         Center="{Binding SelectedCountry.Location, Converter={conv:PointToMapCoordinates}}">
+                    <map:Map.MapLayer>
+                        <map:MapTileLayer TileSource="http://tile.stamen.com/toner-lite/{z}/{x}/{y}.png"/>
+                    </map:Map.MapLayer>
+                </map:Map>
             </Grid>
         </GroupBox>
     </Grid>
