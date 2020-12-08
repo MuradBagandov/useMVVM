@@ -14,60 +14,83 @@
     <UserControl.DataContext >
         <vm:CountriesStatisticViewModel/>
     </UserControl.DataContext>
-    <Grid>
+    <Grid Background="{StaticResource SolidBrush_DarkGray}">
+        <Grid.Resources>
+            <Style TargetType="{x:Type GroupBox}">
+                <Setter Property="Background" Value="{StaticResource SolidBrush_DarkGray}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource SolidBrush_WhiteSmoke}"/>
+                <Setter Property="Foreground" Value="{StaticResource SolidBrush_White}"/>
+                <Setter Property="BorderThickness" Value=".5,1"/>
+            </Style>
+
+            <DataTemplate DataType="{x:Type models:CountryInfo}">
+                <Grid>
+                    <TextBlock Text="{Binding Name}"/>
+                </Grid>
+            </DataTemplate>
+        </Grid.Resources>
+           
+            
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" MinWidth="100"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <GroupBox Header="Список стран">
-            <GroupBox.Resources>
-                <conv:LocationPointToString x:Key="LocationConvertor"/>
-                <DataTemplate DataType="{x:Type models:CountryInfo}">
-                    <Grid>
-                        <TextBlock Text="{Binding Name}"/>
-                    </Grid>
+        <DockPanel Margin="5">
+            <Button DockPanel.Dock="Top" Height="20" Content="Загрузить данные" Margin="0,3"
+                    Command="{Binding RefreshDataCommand}"/>
+            <ListBox ItemsSource="{Binding Countries, UpdateSourceTrigger=PropertyChanged}"
+                     SelectedItem="{Binding SelectedCountry}" HorizontalContentAlignment="Stretch"/>
 
-                </DataTemplate>
-            </GroupBox.Resources>
-            <DockPanel>
-                <Button DockPanel.Dock="Top" Height="20" Content="Загрузить данные" Margin="0,3"
-                        Command="{Binding RefreshDataCommand}"/>
-                <ListBox ItemsSource="{Binding Countries, UpdateSourceTrigger=PropertyChanged}"
-                         SelectedItem="{Binding SelectedCountry}"/>
-            </DockPanel>
-            
-        </GroupBox>
-        <GridSplitter HorizontalAlignment="Right" Width="1" VerticalAlignment="Stretch"/>
 
-        <GroupBox Header="Информация" Grid.Column="1">
-            <Grid >
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+        </DockPanel>
+        <GridSplitter HorizontalAlignment="Right" Width="3" VerticalAlignment="Stretch" 
+                    Background="{StaticResource SolidBrush_Transporent}"/>
 
-                <oxy:Plot Grid.Row="0">
-                    <oxy:Plot.Axes>
-                        <oxy:LinearAxis Position="Left" Title="Количество" 
-                                        MinorGridlineStyle="Solid" MajorGridlineStyle="Solid"/>
-                        <oxy:DateTimeAxis Position="Bottom" Title="Дата" MajorGridlineStyle="Solid"/>
-                    </oxy:Plot.Axes>
-                    <oxy:LineSeries Color="red" StrokeThickness="2"
+        <Grid Grid.Column="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Margin="5,5,0,0"
+                       Text="{Binding SelectedCountry.Name, StringFormat=Страна: {0}}"
+                       Foreground="{StaticResource SolidBrush_White}" TextAlignment="Center"/>
+
+            <oxy:Plot Grid.Row="1" Margin="3,3,20,3" 
+                          TextColor="White" PlotAreaBorderColor="white" 
+                          Background="{StaticResource SolidBrush_Transporent}">
+                <oxy:Plot.Axes>
+                    <oxy:LinearAxis Position="Left" Title="Количество" 
+                                        MinorGridlineColor="Gray" MajorGridlineColor="White"
+                                        MinorGridlineStyle="Solid" MajorGridlineStyle="Solid" 
+                                        TicklineColor="White"
+                                        ToolBar.OverflowMode="Always"/>
+                    <oxy:DateTimeAxis Position="Bottom" Title="Дата"
+                                          MajorGridlineStyle="Solid" 
+                                          MajorGridlineColor="LightGray" 
+                                          TicklineColor="White"/>
+                </oxy:Plot.Axes>
+                <oxy:LineSeries Color="red" StrokeThickness="2"
                         ItemsSource="{Binding SelectedCountry.Counts}" DataFieldX="Date" DataFieldY="Count">
-                        
-                    </oxy:LineSeries>
-                </oxy:Plot>
-                <GridSplitter HorizontalAlignment="Stretch" Height="1" VerticalAlignment="Bottom"/>
 
-                
-                <map:Map Grid.Row="1" ZoomLevel="4" MaxZoomLevel="20" 
+                </oxy:LineSeries>
+            </oxy:Plot>
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Height="3" 
+                              VerticalAlignment="Bottom" Background="{StaticResource SolidBrush_Transporent}"/>
+
+            <Border Grid.Row="2" BorderBrush="{StaticResource SolidBrush_HighLightGray}" BorderThickness="1">
+                <map:Map Margin="2" ZoomLevel="4" MaxZoomLevel="6" Background="{StaticResource SolidBrush_DarkGray}"
                          Center="{Binding SelectedCountry.Location, Converter={conv:PointToMapCoordinates}}">
+                    <map:MapGraticule Opacity="0.5" Foreground="Black"/>
                     <map:Map.MapLayer>
                         <map:MapTileLayer TileSource="http://tile.stamen.com/toner-lite/{z}/{x}/{y}.png"/>
                     </map:Map.MapLayer>
                 </map:Map>
-            </Grid>
-        </GroupBox>
+            </Border>
+
+        </Grid>
     </Grid>
 </UserControl>

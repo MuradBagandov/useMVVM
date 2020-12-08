@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
-    <Style TargetType="TextBox" x:Key="TextBoxWithValidation">
+    <Style TargetType="{x:Type TextBox}" x:Key="TextBoxWithValidation">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="#FFEBFAFF" />
@@ -10,7 +10,7 @@
         <Setter Property="Padding" Value="4" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="TextBox">
+                <ControlTemplate TargetType="{x:Type TextBox}">
                     <Grid x:Name="root" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" SnapsToDevicePixels="true">
                         <Border x:Name="Background" BorderThickness="0,0,0,1" CornerRadius="3" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"/>
                         <ScrollViewer x:Name="PART_ContentHost"
@@ -70,5 +70,4 @@
                           VerticalScrollBarVisibility="Hidden"/>
         </Border>
     </ControlTemplate>
-
 </ResourceDictionary>
