@@ -26,7 +26,7 @@ namespace UseMVVM
             host_builder.ConfigureAppConfiguration((host, cfg) => 
             {
                 cfg.SetBasePath(App.CurrentDirectory);
-                cfg.AddJsonFile("appSetting.json", true, true);
+                cfg.AddJsonFile("appSettings.json", true, true);
             });
 
             host_builder.ConfigureServices(App.ConfigureServices);

@@ -117,7 +117,7 @@ namespace UseMVVM.ViewModels
         #endregion
 
         #region RemoveGroupCommand
-        public ICommand RemoveGroupCommand { get; set; }
+        public ICommand RemoveGroupCommand { get; set; } 
 
         private bool CanRemoveGroupCommandExecute(object p) => p is Group group && Groups.Contains(group);
 
@@ -136,9 +136,10 @@ namespace UseMVVM.ViewModels
 
         #endregion
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(CountriesStatisticViewModel statistic)
         {
-            CountriesStatistic = new CountriesStatisticViewModel(this);
+            CountriesStatistic = statistic;
+            CountriesStatistic.MainModel = this;
 
             #region Commands
             RemoveGroupCommand = new LambdaCommand(OnRemoveGroupCommandExecuted, CanRemoveGroupCommandExecute);

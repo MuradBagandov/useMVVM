@@ -18,11 +18,13 @@ namespace UseMVVM
     /// </summary>
     public partial class App : Application
     {
+        public static IHost Host => _host ??= Program.CreateHostBuilder(Environment.GetCommandLineArgs()).Build();
         public static bool IsDesignMode { get; set; } = true;
+        public static string CurrentDirectory => IsDesignMode == true ?
+            Path.GetDirectoryName(GetSourceCodePath()) :
+            Environment.CurrentDirectory;
 
-        private IHost _host;
-
-        public IHost Host => _host ??= Program.CreateHostBuilder(Environment.GetCommandLineArgs()).Build();
+        private static IHost _host;
 
         protected override async void OnStartup(StartupEventArgs e)
         {
@@ -44,11 +46,9 @@ namespace UseMVVM
         internal static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
             services.AddSingleton<DataService>();
+            services.AddSingleton<ViewModels.MainWindowViewModel>();
+            services.AddSingleton<ViewModels.CountriesStatisticViewModel>();
         }
-
-        public static string CurrentDirectory => IsDesignMode == true ?
-            Path.GetDirectoryName(GetSourceCodePath()): 
-            Environment.CurrentDirectory;
 
         public static string GetSourceCodePath([CallerFilePath]string path = null) => path;
     }

@@ -16,7 +16,7 @@ namespace UseMVVM.ViewModels
         private DataService _DataService;
 
         #region Properties
-        public MainWindowViewModel MainModel { get; }
+        public MainWindowViewModel MainModel { get; internal set; }
 
         #region Countries : IEnumerable<CountryInfo>
         private IEnumerable<CountryInfo> _Countries;
@@ -54,11 +54,8 @@ namespace UseMVVM.ViewModels
 
         #endregion
 
-        public CountriesStatisticViewModel():this(null) {  }
-
-        public CountriesStatisticViewModel(MainWindowViewModel main)
+        public CountriesStatisticViewModel()
         {
-            this.MainModel = main;
             _DataService = new DataService();
 
             #region Commands
