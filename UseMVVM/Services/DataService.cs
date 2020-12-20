@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using UseMVVM.Models;
+using UseMVVM.Services.Interfaces;
 
 namespace UseMVVM.Services
 {
@@ -19,7 +20,7 @@ namespace UseMVVM.Services
         Recovered
     }
 
-    internal class DataService
+    internal class DataService: IDataService
     {
         //https://github.com/CSSEGISandData/COVID-19
 

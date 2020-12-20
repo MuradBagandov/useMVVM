@@ -250,6 +250,7 @@
     <Compile Include="Models\PlaceInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Services\DataService.cs" />
+    <Compile Include="Services\Interfaces\IDataService.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\CalculateViewModel.cs" />
     <Compile Include="ViewModels\CountriesStatisticViewModel.cs" />
@@ -301,9 +302,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

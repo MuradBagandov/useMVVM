@@ -8,12 +8,13 @@ using UseMVVM.Services;
 using UseMVVM.Models;
 using UseMVVM.Infrastuctures;
 using UseMVVM.Infrastuctures.Commands;
+using UseMVVM.Services.Interfaces;
 
 namespace UseMVVM.ViewModels
 {
     internal class CountriesStatisticViewModel : Base.ViewModel
     {
-        private DataService _DataService;
+        private IDataService _DataService;
 
         #region Properties
         public MainWindowViewModel MainModel { get; internal set; }
@@ -40,8 +41,7 @@ namespace UseMVVM.ViewModels
 
         #endregion
 
-
-        #region Команды
+        #region Commands
 
         #region RefreshDataCommand
         public ICommand RefreshDataCommand { get; set; }
@@ -54,9 +54,9 @@ namespace UseMVVM.ViewModels
 
         #endregion
 
-        public CountriesStatisticViewModel()
+        public CountriesStatisticViewModel(IDataService data_service)
         {
-            _DataService = new DataService();
+            _DataService = data_service;
 
             #region Commands
             RefreshDataCommand = new LambdaCommand(OnRefreshDataCommandExecuted);

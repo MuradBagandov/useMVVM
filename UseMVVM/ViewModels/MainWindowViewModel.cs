@@ -16,9 +16,8 @@ namespace UseMVVM.ViewModels
 {
     internal class MainWindowViewModel: Base.ViewModel
     {
-        public CountriesStatisticViewModel CountriesStatistic { get; }
-
         #region Properties
+        public CountriesStatisticViewModel CountriesStatistic { get; }
         public ObservableCollection<Group> Groups { get; set; }
 
         #region Title

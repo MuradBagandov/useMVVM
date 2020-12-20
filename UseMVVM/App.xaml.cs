@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -9,7 +7,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using UseMVVM.Services;
+using UseMVVM.Services.Interfaces;
+using UseMVVM.ViewModels;
 
 namespace UseMVVM
 {
@@ -45,9 +47,9 @@ namespace UseMVVM
 
         internal static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
-            services.AddSingleton<DataService>();
-            services.AddSingleton<ViewModels.MainWindowViewModel>();
-            services.AddSingleton<ViewModels.CountriesStatisticViewModel>();
+            services.AddSingleton<IDataService, DataService>();
+            services.AddSingleton<MainWindowViewModel>();
+            services.AddSingleton<CountriesStatisticViewModel>();
         }
 
         public static string GetSourceCodePath([CallerFilePath]string path = null) => path;
